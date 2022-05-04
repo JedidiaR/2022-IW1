@@ -29,12 +29,16 @@ import { getRessource, getRessources, setRessource, setRessources } from "./idbH
 
   const AppHome = main.querySelector('app-home');
   const AppProduct = main.querySelector('app-product');
+  const AppMyProducts = main.querySelector('app-myproducts');
+
 
   page('*', (ctx, next) => {
     skeleton.removeAttribute('hidden');
 
     AppHome.active = false;
     AppProduct.active = false;
+    AppMyProducts.active = false;
+
 
     next();
   });
@@ -52,6 +56,21 @@ import { getRessource, getRessources, setRessource, setRessources } from "./idbH
     AppHome.active = true;
 
     skeleton.setAttribute('hidden', 'hiddle');
+  });
+
+  page('/cart', async () => {
+    let myproducts = []
+    if (NETWORK_STATE) {
+      const products = await getProducts();
+      // myproducts = await setRessources(products);
+      
+    } else {
+      myproducts = await getRessources();
+    }
+    AppMyProducts.products = myproducts;
+    AppMyProducts.active = true;
+
+
   });
 
   page('/product/:id', async ({ params }) => {

@@ -1,13 +1,17 @@
-import { html } from "lit";
+import { html } from 'lit';
 import { Base } from '../Base';
 
-export class AppProduct extends Base {
+export class MyProductsCard extends Base {
   constructor() {
     super();
+
     this.product = {};
 
     this.loaded = false;
+
+    this.total = 0;
   }
+
   static get properties() {
     return {
       product: { type: Object },
@@ -24,17 +28,11 @@ export class AppProduct extends Base {
 
   render() {
     return html`
-      <section class="product">
+      <a href="/product/${this.product.id}" class="card">
         <header>
           <figure>
-            <div class="placeholder ${this.loaded ? 'fade' : ''}" style="background-image: url(http://localhost:9000/image/24/${this.product.image})"></div>
-            <img
-              loading="lazy"
-              src="http://localhost:9000/image/500/${this.product.image}"
-              alt="${this.product.description}"
-              data-src="http://localhost:9000/image/500/${this.product.image}"
-              width="1280"
-              height="720">
+            <div class="placeholder ${this.loaded ? "fade": ""}" style="background-image: url(http://localhost:9000/image/24/${this.product.image})"></div>
+            <img src="${this.product.image}" alt="${this.product.title}" loading="lazy">
           </figure>
         </header>
         <main>
@@ -42,8 +40,8 @@ export class AppProduct extends Base {
           <p>${this.product.description}</p>
 
         </main>
-      </section>
+      </a>
     `;
   }
 }
-customElements.define('app-product', AppProduct);
+customElements.define('myproducts-card', MyProductsCard);

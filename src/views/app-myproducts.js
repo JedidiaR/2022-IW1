@@ -1,7 +1,7 @@
 import { html } from "lit";
 import { Base } from '../Base';
 
-export class AppProduct extends Base {
+export class AppMyProducts extends Base {
   constructor() {
     super();
     this.product = {};
@@ -40,6 +40,7 @@ export class AppProduct extends Base {
         <main>
           <h1>${this.product.title}</h1>
           <p>${this.product.description}</p>
+          <button @click="${this}" id="mybutton">Add to cart</button>
 
         </main>
       </section>

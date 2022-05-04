@@ -36,6 +36,8 @@ export class ProductCard extends Base {
         <main>
           <h1>${this.product.title}</h1>
           <p>${this.product.description}</p>
+          <button @click="${this.success}" id="mybutton">Add to cart</button>
+
         </main>
       </a>
     `;
